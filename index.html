@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <style>
+        .countdown-container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .countdown-timer{
+            padding: 50px;
+            font-size: 100px;
+            font-weight: bolder;
+            margin: 30px;
+            font-family: "Handjet";
+            border: 5px solid black;
+            border-radius: 20px;
+        }
+        .countdown-lable{
+            font-size: 50px;
+            font-weight: bold;
+            margin: 30px;
+            font-family:monospace
+
+        }
+    </style>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Handjet:wght@100..900&display=swap');
+        </style>
+</head>
+<body>
+    <div class="countdown-container">
+        <div class="countdown-timer" id="countdown"></div>
+        <div class="countdown-lable" ><u>Until 2025</u></div>
+    </div>
+    <script>
+        const targetDate = new Date('2025-01-01T00:00:00')
+        function updateCountdown(){
+            const currentDate = new Date();
+            const timeDifference = targetDate - currentDate;
+            const days = Math.floor(timeDifference/(1000 * 60 * 60 *24));
+            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24))/(1000 * 60 *60 ));
+            const minutes = Math.floor((timeDifference % (1000 * 60 * 60 * 60)) /(1000 * 60));
+            const seconds = Math.floor((timeDifference % (1000 * 60))/(1000));
+            document.getElementById('countdown').innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}`
+            setTimeout(updateCountdown,1000);
+        }
+        updateCountdown();
+    </script>
+</body>
+</html>
